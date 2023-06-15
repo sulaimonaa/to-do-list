@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import './styles/main.css';
 import toDoList from '../modules/taskList.js';
 
