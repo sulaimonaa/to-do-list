@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css2?family=Karla:wght@400;600;700&display=swap");
+
+:root {
+  --main: #fff;
+  --sec: #eaeaea;
+  --third: #b9b9b9;
+  --fourth: #807f7f;
+}
+
+body {
+  background-color: #f7f7f7;
+  font-family: "Karla", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+main {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.listCont {
+  background-color: var(--main);
+  min-width: 90%;
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  margin-top: 5rem;
+}
+
+.title {
+  font-size: 1.1rem;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--sec);
+}
+
+i {
+  color: var(--third);
+}
+
+i:not(.enter) {
+  cursor: pointer;
+}
+
+i:not(.enter):hover {
+  color: var(--fourth);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  margin: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid var(--sec);
+  font-size: 14px;
+}
+
+li .checkList {
+  display: flex;
+  align-items: center;
+}
+
+input {
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  font-style: italic;
+  outline: 0;
+}
+
+.checkList input {
+  margin-right: 10px;
+}
+
+#add {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--sec);
+}
+
+#add i {
+  transform: rotate(90deg);
+  margin-right: 2px;
+}
+
+.clearCont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  background-color: var(--sec);
+}
+
+.clearCont .clrBtn {
+  outline: none;
+  border: none;
+  background: inherit;
+  line-height: 1.5rem;
+  font-size: inherit;
+}
+
+@media screen and (min-width: 768px) {
+  .listCont {
+    background-color: var(--main);
+    min-width: 50%;
+    box-shadow:
+      0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    margin-top: 5rem;
+  }
+}
