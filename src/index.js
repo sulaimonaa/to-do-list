@@ -19,12 +19,14 @@ addThrEnter.addEventListener('submit', (event) => {
 
 const taskItems = document.querySelector('.tasks-container');
 taskItems.addEventListener('click', (event) => {
-  const target = event.target;
+  const { target } = event;
   const parentElement = target.parentNode;
   const todoId = Number(parentElement.id);
-  const action = target.dataset.action;
+  const { action } = target.dataset;
 
-  action === 'delete' && taskCollection.removeTask(todoId);
+  if (action === 'delete') {
+    taskCollection.removeTask(todoId);
+  }
 });
 
 taskCollection.storedLocal();
