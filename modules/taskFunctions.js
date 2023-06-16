@@ -42,12 +42,21 @@ class TaskCollection {
     this.toDoList.forEach((task, index) => {
       index += this.taskIndex;
       this.listContainer.innerHTML += `<li class="task-item" id='${index}'>
-                      <div class="checkList" data-action="check"> <i class="fa ${
-                        this.completed ? 'fa-square' : 'fa-square-o'
-                      }" data-action="check" aria-hidden="true"></i> ${
-        task.descriptionValue
-      }</div>
-                      <i class="fa-solid fa-trash" data-action="delete"></i>
+                      <div 
+                      class="checkList" 
+                      data-action="check"
+                      > <i 
+                        class="fa ${
+                          task.completedValue ? 'fa-square' : 'fa-square-o'
+                        }" 
+                        data-action="check" 
+                        aria-hidden="true"
+                        ></i> ${task.descriptionValue}
+                      </div>
+                      <i 
+                        class="fa-solid fa-trash" 
+                        data-action="delete"
+                      ></i>
                   </li>`;
     });
   }
