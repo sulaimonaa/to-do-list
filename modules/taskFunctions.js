@@ -1,10 +1,11 @@
+import completeTask from './complete.js';
 class TaskCollection {
   constructor() {
     this.listContainer = document.querySelector('.tasks-container');
     this.description = document.querySelector('#addDo');
     this.completed = false;
-    this.taskIndex = 1;
     this.toDoList = [];
+    this.taskIndex = this.toDoList.length;
   }
 
   storedLocal() {
@@ -21,9 +22,10 @@ class TaskCollection {
   removeTask(index) {
     const passIndex = index - 1;
     this.toDoList = this.toDoList.filter(
-      (task, taskIndex) => taskIndex !== passIndex,
+      (task, taskIndex) => taskIndex !== passIndex
     );
     localStorage.setItem('tasks', JSON.stringify(this.toDoList));
+
     for (let i = 0; i < this.toDoList.length; i += 1) {
       this.toDoList[i].index = i;
     }
@@ -31,12 +33,20 @@ class TaskCollection {
     this.displayTasks();
   }
 
+  completeTask(index) {
+    completeTask;
+  }
+
   displayTasks() {
     this.listContainer.innerHTML = '';
     this.toDoList.forEach((task, index) => {
       index += this.taskIndex;
       this.listContainer.innerHTML += `<li class="task-item" id='${index}'>
-                      <div class="checkList" data-action="check"> <input type="checkbox" name="check" class="complete"> ${task.descriptionValue}</div>
+                      <div class="checkList" data-action="check"> <i class="fa ${
+                        this.completed ? 'fa-square' : 'fa-square-o'
+                      }" data-action="check" aria-hidden="true"></i> ${
+        task.descriptionValue
+      }</div>
                       <i class="fa-solid fa-trash" data-action="delete"></i>
                   </li>`;
     });

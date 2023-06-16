@@ -27,6 +27,9 @@ taskItems.addEventListener('click', (event) => {
   if (action === 'delete') {
     taskCollection.removeTask(todoId);
   }
+  if (action === 'check') {
+    taskCollection.completeTask(todoId);
+  }
 });
 
 taskCollection.storedLocal();
