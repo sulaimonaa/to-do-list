@@ -21,7 +21,7 @@ class TaskCollection {
   removeTask(index) {
     const passIndex = index - 1;
     this.toDoList = this.toDoList.filter(
-      (task, taskIndex) => taskIndex !== passIndex
+      (task, taskIndex) => taskIndex !== passIndex,
     );
     localStorage.setItem('tasks', JSON.stringify(this.toDoList));
     for (let i = 0; i < this.toDoList.length; i += 1) {
