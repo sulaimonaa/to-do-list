@@ -21,7 +21,7 @@ class TaskCollection {
   removeTask(index) {
     const passIndex = index - 1;
     this.toDoList = this.toDoList.filter(
-      (task, taskIndex) => taskIndex !== passIndex,
+      (task, taskIndex) => taskIndex !== passIndex
     );
     localStorage.setItem('tasks', JSON.stringify(this.toDoList));
     for (let i = 0; i < this.toDoList.length; i += 1) {
@@ -29,11 +29,17 @@ class TaskCollection {
     }
 
     this.displayTasks();
+    // alert('my index was clicked!');
+  }
+
+  completeTask(index) {
+    alert('checked');
   }
 
   displayTasks() {
     this.listContainer.innerHTML = '';
     this.toDoList.forEach((task, index) => {
+      //   const listContainer = document.querySelector('.tasks-container');
       index += this.taskIndex;
       this.listContainer.innerHTML += `<li class="task-item" id='${index}'>
                       <div class="checkList" data-action="check"> <input type="checkbox" name="check" class="complete"> ${task.descriptionValue}</div>
