@@ -1,17 +1,35 @@
 import './styles/main.css';
-import toDoList from '../modules/taskList.js';
+// import toDoList from '../modules/taskList.js';
+import TaskCollection from '../modules/taskFunctions.js';
 
-const listContainer = document.querySelector('.tasks-container');
+const addToDoBtn = document.querySelector('.enter');
+const addThrEnter = document.querySelector('form');
 
-const displayTasks = () => {
-  let singleTask = '';
-  toDoList.forEach((task) => {
-    singleTask += `<li class="task-item" id='${task.index}'>
-                    <div class="checkList"> <input type="checkbox" name="check"> ${task.description}</div>
-                    <i class="fa-solid fa-trash"></i>
-                </li>`;
-    listContainer.innerHTML = singleTask;
-  });
-};
+const taskCollection = new TaskCollection();
 
-window.onload = displayTasks();
+addToDoBtn.addEventListener('click', (event) => {
+  event.preventDefault();
+  taskCollection.addTask();
+});
+
+addThrEnter.addEventListener('submit', (event) => {
+  event.preventDefault();
+  taskCollection.addTask();
+});
+
+const taskItems = document.querySelector('.tasks-container');
+taskItems.addEventListener('click', (event) => {
+  const target = event.target;
+  const parentElement = target.parentNode;
+  const todoId = Number(parentElement.id);
+
+  const action = target.dataset.action;
+
+  action === 'check' && taskCollection.completeTask(todoId);
+  action === 'delete' && taskCollection.removeTask(todoId);
+
+  console.log(todoId, action);
+});
+
+taskCollection.storedLocal();
+taskCollection.displayTasks();

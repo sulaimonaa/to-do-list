@@ -13,13 +13,16 @@
           Today's To Do <i class="fa-solid fa-arrows-rotate"></i>
         </div>
         <div id="add">
-          <input
-            type="text"
-            placeholder="Add to your list..."
-            name="addDo"
-            id="addDo"
-          />
-          <i class="fa-solid fa-arrow-turn-down enter"></i>
+          <form action="">
+            <input
+              type="text"
+              placeholder="Add to your list..."
+              name="addDo"
+              id="addDo"
+            />
+            <i class="fa-solid fa-arrow-turn-down enter"></i>
+            <input type="hidden" name="submit" />
+          </form>
         </div>
         <ul class="tasks-container"></ul>
         <div class="clearCont">
