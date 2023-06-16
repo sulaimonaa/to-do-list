@@ -22,13 +22,9 @@ taskItems.addEventListener('click', (event) => {
   const target = event.target;
   const parentElement = target.parentNode;
   const todoId = Number(parentElement.id);
-
   const action = target.dataset.action;
 
-  action === 'check' && taskCollection.completeTask(todoId);
   action === 'delete' && taskCollection.removeTask(todoId);
-
-  console.log(todoId, action);
 });
 
 taskCollection.storedLocal();
