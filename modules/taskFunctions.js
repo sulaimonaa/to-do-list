@@ -32,10 +32,16 @@ class TaskCollection {
     this.displayTasks();
   }
 
+  removeAll() {
+    this.toDoList = this.toDoList.filter(() => false);
+    localStorage.setItem('tasks', JSON.stringify(this.toDoList));
+  }
+
   completeTask(todoId) {
+    todoId = todoId - 1;
     this.toDoList = this.toDoList.map((task, index) => ({
       ...task,
-      completedValue: index === todoId ? task.completed : !task.completed,
+      completedValue: index === todoId ? !task.completed : this.completed,
     }));
 
     this.displayTasks();
@@ -50,7 +56,7 @@ class TaskCollection {
                           class="fa ${
                             task.completedValue ? 'fa-square' : 'fa-square-o'
                           }" 
-                          data-action="check"
+                          data-action="change"
                         ></i>
                       <p data-action="edit">  ${task.descriptionValue} </p>
                       <i class="fa-solid fa-trash" data-action="delete"></i>

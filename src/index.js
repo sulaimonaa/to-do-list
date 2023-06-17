@@ -26,7 +26,7 @@ taskItems.addEventListener('click', (event) => {
   const { action } = target.dataset;
 
   function performCheckAction(action, todoId) {
-    if (action === 'check') {
+    if (action === 'change') {
       taskCollection.completeTask(todoId);
     } else if (action === 'edit') {
       taskCollection.editTask(todoId);
@@ -36,6 +36,13 @@ taskItems.addEventListener('click', (event) => {
   }
 
   performCheckAction(action, todoId);
+});
+
+const clearBtn = document.querySelector('.clrBtn');
+clearBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  taskCollection.removeAll();
+  document.location.reload();
 });
 
 taskCollection.storedLocal();
