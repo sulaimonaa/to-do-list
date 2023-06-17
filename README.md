@@ -88,9 +88,9 @@ Run this commands:
 
 ### Deployment
 
-Project deployment is currently not available...
+Project deployment is available on the link below:
   
-  <a href"#">N/A</a>
+  <a href"https://sulaimonaa.github.io/to-do-list/dist/">My To Do List App</a>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
