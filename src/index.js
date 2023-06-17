@@ -19,15 +19,23 @@ addThrEnter.addEventListener('submit', (event) => {
 const taskItems = document.querySelector('.tasks-container');
 taskItems.addEventListener('click', (event) => {
   event.preventDefault();
-  const target = event.target;
+  const { target } = event;
   const parentElement = target.parentNode;
   const todoId = Number(parentElement.id);
 
-  const action = target.dataset.action;
+  const { action } = target.dataset;
 
-  action === 'check' && taskCollection.completeTask(todoId);
-  action === 'edit' && taskCollection.editTask(todoId);
-  action === 'delete' && taskCollection.removeTask(todoId);
+  function performCheckAction(action, todoId) {
+    if (action === 'check') {
+      taskCollection.completeTask(todoId);
+    } else if (action === 'edit') {
+      taskCollection.editTask(todoId);
+    } else if (action === 'delete') {
+      taskCollection.removeTask(todoId);
+    }
+  }
+
+  performCheckAction(action, todoId);
 });
 
 taskCollection.storedLocal();
