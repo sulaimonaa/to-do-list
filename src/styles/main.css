@@ -103,7 +103,13 @@ form {
   margin-right: 2px;
 }
 
-.btn-remove, .btn-more{
+.btn-remove {
+  width: 25px;
+  background: transparent;
+  border: none;
+}
+
+.btn-more {
   width: 25px;
   background: transparent;
   border: none;
