@@ -73,6 +73,12 @@ class TaskCollection {
             ? newTask.descriptionValue
             : task.descriptionValue,
       }));
+
+      this.editToDo = -1;
+
+      localStorage.setItem('tasks', JSON.stringify(this.toDoList));
+
+      this.displayTasks();
     } else {
       this.toDoList.push(newTask);
       localStorage.setItem('tasks', JSON.stringify(this.toDoList));
@@ -87,6 +93,9 @@ class TaskCollection {
     todoId -= 1;
     this.description.value = this.toDoList[todoId].descriptionValue;
     this.editToDo = todoId;
+
+    localStorage.setItem('tasks', JSON.stringify(this.toDoList));
+    this.displayTasks();
   }
 }
 
