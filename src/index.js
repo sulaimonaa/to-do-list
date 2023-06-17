@@ -26,7 +26,7 @@ taskItems.addEventListener('click', (event) => {
   const { action } = target.dataset;
 
   function performCheckAction(action, todoId) {
-    if (action === 'change') {
+    if (action === 'check') {
       taskCollection.completeTask(todoId);
     } else if (action === 'edit') {
       taskCollection.editTask(todoId);

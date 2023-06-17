@@ -88,9 +88,9 @@ Run this commands:
 
 ### Deployment
 
-You can access this project using the link below:
+Project deployment is currently not available...
   
-  <a href="https://sulaimonaa.github.io/to-do-add-remove-branch/">Check out Awesome Books</a>
+  <a href"#">N/A</a>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

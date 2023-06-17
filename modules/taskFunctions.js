@@ -22,7 +22,7 @@ class TaskCollection {
   removeTask(index) {
     const passIndex = index - 1;
     this.toDoList = this.toDoList.filter(
-      (task, taskIndex) => taskIndex !== passIndex,
+      (task, taskIndex) => taskIndex !== passIndex
     );
     localStorage.setItem('tasks', JSON.stringify(this.toDoList));
     for (let i = 0; i < this.toDoList.length; i += 1) {
@@ -35,6 +35,7 @@ class TaskCollection {
   removeAll() {
     this.toDoList = this.toDoList.filter(() => false);
     localStorage.setItem('tasks', JSON.stringify(this.toDoList));
+    this.displayTasks();
   }
 
   completeTask(todoId) {
@@ -45,6 +46,7 @@ class TaskCollection {
     }));
 
     this.displayTasks();
+    // windows.location.reload();
   }
 
   displayTasks() {
@@ -54,14 +56,23 @@ class TaskCollection {
       this.listContainer.innerHTML += `<li class="task-item" id='${index}'> 
                         <i 
                           class="fa ${
-  task.completedValue ? 'fa-square' : 'fa-square-o'
-}" 
-                          data-action="change"
+                            task.completedValue ? 'fa-square' : 'fa-square-o'
+                          }" 
+                          data-action="check"
                         ></i>
                       <p data-action="edit">  ${task.descriptionValue} </p>
                       <i class="fa-solid fa-trash" data-action="delete"></i>
                   </li>`;
     });
+  }
+
+  editTask(todoId) {
+    todoId -= 1;
+    this.description.value = this.toDoList[todoId].descriptionValue;
+    this.editToDo = todoId;
+
+    localStorage.setItem('tasks', JSON.stringify(this.toDoList));
+    this.displayTasks();
   }
 
   addTask() {
@@ -93,15 +104,6 @@ class TaskCollection {
     this.displayTasks();
 
     this.description.value = '';
-  }
-
-  editTask(todoId) {
-    todoId -= 1;
-    this.description.value = this.toDoList[todoId].descriptionValue;
-    this.editToDo = todoId;
-
-    localStorage.setItem('tasks', JSON.stringify(this.toDoList));
-    this.displayTasks();
   }
 }
 
