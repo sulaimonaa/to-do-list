@@ -84,6 +84,9 @@ input {
 .checkList input {
   margin-right: 10px;
 }
+.edit {
+  width: 90%;
+}
 
 #add {
   padding: 15px;

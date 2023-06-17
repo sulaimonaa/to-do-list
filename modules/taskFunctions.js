@@ -5,6 +5,7 @@ class TaskCollection {
     this.completed = false;
     this.taskIndex = 1;
     this.toDoList = [];
+    this.editToDo = -1;
   }
 
   storedLocal() {
@@ -31,16 +32,27 @@ class TaskCollection {
     this.displayTasks();
   }
 
-  completeTask(index) {
-    alert('checked');
+  completeTask(todoId) {
+    this.toDoList = this.toDoList.map((task, index) => ({
+      ...task,
+      completedValue: index === todoId ? task.completed : !task.completed,
+    }));
+
+    this.displayTasks();
   }
 
   displayTasks() {
     this.listContainer.innerHTML = '';
     this.toDoList.forEach((task, index) => {
       index += this.taskIndex;
-      this.listContainer.innerHTML += `<li class="task-item" id='${index}'>
-                      <div class="checkList" data-action="check"> <input type="checkbox" name="check" class="complete"> ${task.descriptionValue}</div>
+      this.listContainer.innerHTML += `<li class="task-item" id='${index}'> 
+                        <i 
+                          class="fa ${
+                            task.completedValue ? 'fa-square' : 'fa-square-o'
+                          }" 
+                          data-action="check"
+                        ></i>
+                      <p data-action="edit">  ${task.descriptionValue} </p>
                       <i class="fa-solid fa-trash" data-action="delete"></i>
                   </li>`;
     });
@@ -49,16 +61,32 @@ class TaskCollection {
   addTask() {
     const descriptionValue = this.description.value;
     const completedValue = this.completed;
-    const taskId = this.taskIndex;
+    const taskId = this.taskIndex + this.toDoList.length;
 
     const newTask = { descriptionValue, completedValue, taskId };
 
-    this.toDoList.push(newTask);
-    localStorage.setItem('tasks', JSON.stringify(this.toDoList));
-
+    if (this.editToDo >= 0) {
+      this.toDoList = this.toDoList.map((task, index) => ({
+        ...task,
+        descriptionValue:
+          index === this.editToDo
+            ? newTask.descriptionValue
+            : task.descriptionValue,
+      }));
+    } else {
+      this.toDoList.push(newTask);
+      localStorage.setItem('tasks', JSON.stringify(this.toDoList));
+      this.displayTasks();
+    }
     this.displayTasks();
 
     this.description.value = '';
+  }
+
+  editTask(todoId) {
+    todoId = todoId - 1;
+    this.description.value = this.toDoList[todoId].descriptionValue;
+    this.editToDo = todoId;
   }
 }
 
