@@ -103,6 +103,21 @@ form {
   margin-right: 2px;
 }
 
+.btn-remove, .btn-more{
+  width: 25px;
+  background: transparent;
+  border: none;
+}
+
+.remove-all {
+  border: none;
+  background: transparent;
+}
+
+.icon {
+  width: 100%;
+}
+
 .clearCont {
   display: flex;
   justify-content: center;

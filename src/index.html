@@ -13,7 +13,7 @@
           Today's To Do <i class="fa-solid fa-arrows-rotate"></i>
         </div>
         <div id="add">
-          <form action="">
+          <form action="" class="add-item">
             <input
               type="text"
               placeholder="Add to your list..."
@@ -24,9 +24,12 @@
             <input type="hidden" name="submit" />
           </form>
         </div>
-        <ul class="tasks-container"></ul>
+        <ul
+          class="list tasks-container"
+          data-container="to-do-list-container"
+        ></ul>
         <div class="clearCont">
-          <button class="clrBtn" type="button">Clear all completed</button>
+          <button class="remove-all" type="button">Clear all completed</button>
         </div>
       </section>
     </main>

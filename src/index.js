@@ -1,49 +1,19 @@
+import addNewTodoItem from '../modules/add.js';
+import createTodoItem from '../modules/display.js';
+import { removeItems } from '../modules/remove.js';
 import './styles/main.css';
-import TaskCollection from '../modules/taskFunctions.js';
 
-const addToDoBtn = document.querySelector('.enter');
-const addThrEnter = document.querySelector('form');
-
-const taskCollection = new TaskCollection();
-
-addToDoBtn.addEventListener('click', (event) => {
+const FORM_ADD_NEW_ITEM = document.querySelector('.add-item');
+FORM_ADD_NEW_ITEM.addEventListener('submit', (event) => {
   event.preventDefault();
-  taskCollection.addTask();
-});
-
-addThrEnter.addEventListener('submit', (event) => {
-  event.preventDefault();
-  taskCollection.addTask();
-});
-
-const taskItems = document.querySelector('.tasks-container');
-taskItems.addEventListener('click', (event) => {
-  event.preventDefault();
-  const { target } = event;
-  const parentElement = target.parentNode;
-  const todoId = Number(parentElement.id);
-
-  const { action } = target.dataset;
-
-  function performCheckAction(action, todoId) {
-    if (action === 'check') {
-      taskCollection.completeTask(todoId);
-    } else if (action === 'edit') {
-      taskCollection.editTask(todoId);
-    } else if (action === 'delete') {
-      taskCollection.removeTask(todoId);
-    }
-  }
-
-  performCheckAction(action, todoId);
-});
-
-const clearBtn = document.querySelector('.clrBtn');
-clearBtn.addEventListener('click', (e) => {
-  e.preventDefault();
-  taskCollection.removeAll();
+  addNewTodoItem();
+  createTodoItem();
   document.location.reload();
 });
 
-taskCollection.storedLocal();
-taskCollection.displayTasks();
+const REMOVE_ALL_BUTTON = document.querySelector('.remove-all');
+REMOVE_ALL_BUTTON.addEventListener('click', (event) => {
+  event.preventDefault();
+  removeItems();
+  document.location.reload();
+});
