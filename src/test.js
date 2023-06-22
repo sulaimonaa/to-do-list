@@ -32,7 +32,7 @@ describe('ADD_NEW_ITEM', () => {
     const storage = getFromStorage();
     expect(storage.length).to.equal(1);
     expect(storage[0].description).to.equal(mockValue);
-    expect(storage[0].completed).to.be.false;
+    expect(storage[0].completed).to.equal(false);
     expect(storage[0].index).to.equal(1);
   });
 
