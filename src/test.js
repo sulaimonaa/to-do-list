@@ -1,21 +1,22 @@
 // Import the necessary functions and modules for testing
+// Mocked function to save data to storage
+
+// Import the function to be tested
+import { getFromStorage } from '../modules/storage.js';
+import { removeItem, removeItems } from '../modules/remove.js';
+
 const { JSDOM } = require('jsdom');
 // const { expect } = require('chai');
 
 // Mock the document object using JSDOM
 const { window } = new JSDOM(
-  '<!DOCTYPE html><html><body><main class="container"><section class="listCont"><div class="title">Today\'s To Do <i class="fa-solid fa-arrows-rotate"></i></div><div id="add"><form action="" class="add-item"><input type="text" placeholder="Add to your list..." name="addDo" id="addDo"/> <i class="fa-solid fa-arrow-turn-down enter"></i><input type="hidden" name="submit" /></form></div><ul class="list tasks-container" data-container="to-do-list-container"></ul><div class="clearCont"><button class="remove-all" type="button">Clear all completed</button></div></section></main></body></html>'
+  '<!DOCTYPE html><html><body><main class="container"><section class="listCont"><div class="title">Today\'s To Do <i class="fa-solid fa-arrows-rotate"></i></div><div id="add"><form action="" class="add-item"><input type="text" placeholder="Add to your list..." name="addDo" id="addDo"/> <i class="fa-solid fa-arrow-turn-down enter"></i><input type="hidden" name="submit" /></form></div><ul class="list tasks-container" data-container="to-do-list-container"></ul><div class="clearCont"><button class="remove-all" type="button">Clear all completed</button></div></section></main></body></html>',
 );
 
 // Assign the global variables from the mocked document object
 global.document = window.document;
 global.getFromStorage = () => []; // Mocked function to retrieve data from storage
-global.saveToStorage = (data) => {}; // Mocked function to save data to storage
-
-// Import the function to be tested
-import { getFromStorage, saveToStorage } from '../modules/storage';
-const ADD_NEW_ITEM = require('../modules/add');
-import { removeItem, removeItems } from '../modules/remove';
+const ADD_NEW_ITEM = require('../modules/add.js');
 
 describe('ADD_NEW_ITEM', () => {
   it('should add a new item to the storage if input value is not empty', () => {
