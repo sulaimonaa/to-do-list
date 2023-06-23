@@ -6,7 +6,7 @@ import { getFromStorage, saveToStorage } from "../modules/storage.js";
 import { removeItem, removeItems } from "../modules/remove.js";
 
 const { JSDOM } = require("jsdom");
-const { expect } = require("chai");
+//const { expect } = require("chai");
 
 // Mock the document object using JSDOM
 const { window } = new JSDOM(
