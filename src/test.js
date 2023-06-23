@@ -2,7 +2,7 @@
 // Mocked function to save data to storage
 
 // Import the function to be tested
-import { getFromStorage } from '../modules/storage.js';
+import { getFromStorage, saveToStorage } from '../modules/storage.js';
 import { removeItem, removeItems } from '../modules/remove.js';
 
 const { JSDOM } = require('jsdom');
@@ -16,6 +16,9 @@ const { window } = new JSDOM(
 // Assign the global variables from the mocked document object
 global.document = window.document;
 global.getFromStorage = () => []; // Mocked function to retrieve data from storage
+global.saveToStorage = () => {};
+const ADD_NEW_ITEM = require('../modules/add.js');
+const EDIT_TODO_ITEM = require('../modules/edit.js');
 const ADD_NEW_ITEM = require('../modules/add.js');
 
 describe('ADD_NEW_ITEM', () => {
