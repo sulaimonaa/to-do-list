@@ -2,7 +2,7 @@
 // Mocked function to save data to storage
 
 // Import the function to be tested
-import { getFromStorage } from '../modules/storage.js';
+import { getFromStorage, saveToStorage } from '../modules/storage.js';
 import { removeItem, removeItems } from '../modules/remove.js';
 
 const { JSDOM } = require('jsdom');
@@ -10,7 +10,7 @@ const { JSDOM } = require('jsdom');
 
 // Mock the document object using JSDOM
 const { window } = new JSDOM(
-  '<!DOCTYPE html><html><body><main class="container"><section class="listCont"><div class="title">Today\'s To Do <i class="fa-solid fa-arrows-rotate"></i></div><div id="add"><form action="" class="add-item"><input type="text" placeholder="Add to your list..." name="addDo" id="addDo"/> <i class="fa-solid fa-arrow-turn-down enter"></i><input type="hidden" name="submit" /></form></div><ul class="list tasks-container" data-container="to-do-list-container"></ul><div class="clearCont"><button class="remove-all" type="button">Clear all completed</button></div></section></main></body></html>',
+  '<!DOCTYPE html><html><body><main class="container"><section class="listCont"><div class="title">Today\'s To Do <i class="fa-solid fa-arrows-rotate"></i></div><div id="add"><form action="" class="add-item"><input type="text" placeholder="Add to your list..." name="addDo" id="addDo"/> <i class="fa-solid fa-arrow-turn-down enter"></i><input type="hidden" name="submit" /></form></div><ul class="list tasks-container" data-container="to-do-list-container"></ul><div class="clearCont"><button class="remove-all" type="button">Clear all completed</button></div></section></main></body></html>'
 );
 
 // Assign the global variables from the mocked document object
