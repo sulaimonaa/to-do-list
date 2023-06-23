@@ -2,7 +2,7 @@
 // Mocked function to save data to storage
 
 // Import the function to be tested
-import { getFromStorage, saveToStorage } from '../modules/storage.js';
+import { getFromStorage } from '../modules/storage.js';
 import { removeItem, removeItems } from '../modules/remove.js';
 
 const { JSDOM } = require('jsdom');
