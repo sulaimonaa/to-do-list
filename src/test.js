@@ -16,6 +16,7 @@ global.saveToStorage = (data) => {}; // Mocked function to save data to storage
 import { getFromStorage, saveToStorage } from '../modules/storage';
 const ADD_NEW_ITEM = require('../modules/add');
 import { removeItem, removeItems } from '../modules/remove';
+const EDIT_TODO_ITEM = require('../modules/edit');
 
 describe('ADD_NEW_ITEM', () => {
   it('should add a new item to the storage if input value is not empty', () => {
@@ -136,5 +137,40 @@ describe('removeItems', () => {
       { index: 2, task: 'Task 3', completed: false },
       { index: 3, task: 'Task 5', completed: false },
     ]); // The completed items should be removed
+  });
+});
+
+// Mock the storage functions
+jest.mock('../modules/storage', () => ({
+  getFromStorage: jest.fn(),
+  saveToStorage: jest.fn(),
+}));
+
+describe('EDIT_TODO_ITEM', () => {
+  beforeEach(() => {
+    // Clear the mock calls and implementations before each test
+    getFromStorage.mockClear();
+    saveToStorage.mockClear();
+  });
+
+  it('should update the description of a todo item and save it to storage', () => {
+    // Arrange
+    const todoID = 0;
+    const newDescription = 'New description';
+    const mockTodoList = [
+      { id: 0, description: 'Old description' },
+      { id: 1, description: 'Another item' },
+    ];
+    getFromStorage.mockReturnValue(mockTodoList);
+
+    // Act
+    EDIT_TODO_ITEM(todoID, newDescription);
+
+    // Assert
+    expect(getFromStorage).toHaveBeenCalled(); // Ensure getFromStorage was called
+    expect(saveToStorage).toHaveBeenCalledWith(mockTodoList); // Ensure saveToStorage was called with the updated list
+
+    // Check if the todo item's description was updated correctly
+    expect(mockTodoList[todoID].description).toBe(newDescription);
   });
 });
