@@ -5,16 +5,16 @@
 
 <div align="center">
 
-  <h3><b>Awesome Book</b></h3>
+  <h3><b>Todo List App</b></h3>
 
 </div>
 
 
 # 📗 Table of Contents
 
-- [awesome-books](#awesome-books)
+- [todo-list](#todo-list)
 - [📗 Table of Contents](#-table-of-contents)
-- [📖 \[portfolio\] ](#-portfolio-)
+- [📖 \[todo-list\] ](#-todo-list-)
   - [🛠 Built With ](#-built-with-)
     - [Tech Stack ](#tech-stack-)
     - [Key Features ](#key-features-)
@@ -33,7 +33,7 @@
 
 
 
-**[portfolio]** This project allows user to add or remove book title and author
+**[portfolio]** This project allows user to add or remove todo-list tasks
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -82,7 +82,7 @@ Run this commands:
 
 ```sh
   cd my-folder
-  git clone https://github.com/sulaimonaa/to-do-add-remove-branch
+  git clone https://github.com/sulaimonaa/to-do-list
 ```
 
 
