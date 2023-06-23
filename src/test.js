@@ -1,10 +1,4 @@
 // Import the necessary functions and modules for testing
-// Mocked function to save data to storage
-
-// Import the function to be tested
-import { getFromStorage, saveToStorage } from '../modules/storage.js';
-import { removeItem, removeItems } from '../modules/remove.js';
-
 const { JSDOM } = require('jsdom');
 // const { expect } = require('chai');
 
@@ -16,10 +10,12 @@ const { window } = new JSDOM(
 // Assign the global variables from the mocked document object
 global.document = window.document;
 global.getFromStorage = () => []; // Mocked function to retrieve data from storage
-global.saveToStorage = () => {};
-const ADD_NEW_ITEM = require('../modules/add.js');
-const EDIT_TODO_ITEM = require('../modules/edit.js');
-const ADD_NEW_ITEM = require('../modules/add.js');
+global.saveToStorage = (data) => {}; // Mocked function to save data to storage
+
+// Import the function to be tested
+import { getFromStorage, saveToStorage } from '../modules/storage';
+const ADD_NEW_ITEM = require('../modules/add');
+import { removeItem, removeItems } from '../modules/remove';
 
 describe('ADD_NEW_ITEM', () => {
   it('should add a new item to the storage if input value is not empty', () => {
@@ -35,7 +31,7 @@ describe('ADD_NEW_ITEM', () => {
     const storage = getFromStorage();
     expect(storage.length).to.equal(1);
     expect(storage[0].description).to.equal(mockValue);
-    expect(storage[0].completed).to.equal(false);
+    expect(storage[0].completed).to.be.false;
     expect(storage[0].index).to.equal(1);
   });
 
