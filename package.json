@@ -14,7 +14,10 @@
   },
   "jest": {
     "resetMocks": false,
-    "setupFiles": ["./__setups__/localstorage.js", "jest-localstorage-mock"]
+    "setupFiles": [
+      "./__setups__/localstorage.js",
+      "jest-localstorage-mock"
+    ]
   },
   "keywords": [],
   "author": "",
@@ -50,6 +53,7 @@
     "webpack-dev-server": "^4.15.1"
   },
   "dependencies": {
+    "@jest/globals": "^29.5.0",
     "html-webpack-plugin": "^5.5.3",
     "jest": "^29.5.0",
     "lodash": "^4.17.21",
