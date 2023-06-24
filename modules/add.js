@@ -1,3 +1,4 @@
+// import { isEmpty } from 'lodash';
 import { getFromStorage, saveToStorage } from './storage.js';
 
 const ADD_NEW_ITEM = () => {

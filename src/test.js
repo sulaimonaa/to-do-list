@@ -1,5 +1,6 @@
 // Import the necessary functions and modules for testing
 // Mocked function to save data to storage
+// import { expect, jest, test } from '@jest/globals';
 
 // Import the function to be tested
 import { getFromStorage, saveToStorage } from '../modules/storage.js';
@@ -19,6 +20,35 @@ global.getFromStorage = () => []; // Mocked function to retrieve data from stora
 global.saveToStorage = () => {};
 const ADD_NEW_ITEM = require('../modules/add.js');
 const EDIT_TODO_ITEM = require('../modules/edit.js');
+
+describe('EDIT_TODO_ITEM', () => {
+  beforeEach(() => {
+    // Clear the mock calls and implementations before each test
+    getFromStorage();
+    saveToStorage();
+  });
+
+  it('should update the description of a todo item and save it to storage', () => {
+    // Arrange
+    const todoID = 0;
+    const newDescription = 'New description';
+    const mockTodoList = [
+      { todoID: 0, description: 'Old description' },
+      { todoID: 1, description: 'Another item' },
+    ];
+    getFromStorage(mockTodoList);
+
+    // Act
+    EDIT_TODO_ITEM(todoID, newDescription);
+
+    // Assert
+    expect(getFromStorage).toHaveBeenCalled(); // Ensure getFromStorage was called
+    expect(saveToStorage).toHaveBeenCalledWith(mockTodoList);
+
+    // Check if the todo item's description was updated correctly
+    expect(mockTodoList[todoID].description).toBe(newDescription);
+  });
+});
 
 describe('ADD_NEW_ITEM', () => {
   it('should add a new item to the storage if input value is not empty', () => {
@@ -77,9 +107,9 @@ describe('removeItem', () => {
     // Add some to-do items to the list for testing
     // Arrange
     const toDoListCollection = [
-      { index: 1, task: 'Task 1', completed: false },
-      { index: 2, task: 'Task 2', completed: false },
-      { index: 3, task: 'Task 3', completed: false },
+      { index: 1, description: 'Task 1', completed: false },
+      { index: 2, description: 'Task 2', completed: false },
+      { index: 3, description: 'Task 3', completed: false },
     ];
 
     // Act
@@ -87,8 +117,8 @@ describe('removeItem', () => {
 
     // Assert
     expect(toDoListCollection).toEqual([
-      { index: 1, task: 'Task 1', completed: false },
-      { index: 2, task: 'Task 3', completed: false }, // The item with index 2 should be removed
+      { index: 1, description: 'Task 1', completed: false },
+      { index: 2, description: 'Task 3', completed: false }, // The item with index 2 should be removed
     ]);
   });
 
@@ -96,9 +126,9 @@ describe('removeItem', () => {
     // Add some to-do items to the list for testing
     // Arrange
     const toDoListCollection = [
-      { index: 1, task: 'Task 1', completed: false },
-      { index: 2, task: 'Task 2', completed: false },
-      { index: 3, task: 'Task 3', completed: false },
+      { index: 1, description: 'Task 1', completed: false },
+      { index: 2, description: 'Task 2', completed: false },
+      { index: 3, description: 'Task 3', completed: false },
     ];
 
     // Act
@@ -106,9 +136,9 @@ describe('removeItem', () => {
 
     // Assert
     expect(toDoListCollection).toEqual([
-      { index: 1, task: 'Task 1', completed: false },
-      { index: 2, task: 'Task 2', completed: false },
-      { index: 3, task: 'Task 3', completed: false },
+      { index: 1, description: 'Task 1', completed: false },
+      { index: 2, description: 'Task 2', completed: false },
+      { index: 3, description: 'Task 3', completed: false },
     ]); // The list should remain unchanged
   });
 });
@@ -123,11 +153,11 @@ describe('removeItems', () => {
     // Add some to-do items to the list for testing
     // Arrange
     const toDoListCollection = [
-      { index: 1, task: 'Task 1', completed: false },
-      { index: 2, task: 'Task 2', completed: true }, // Completed item
-      { index: 3, task: 'Task 3', completed: false },
-      { index: 4, task: 'Task 4', completed: true }, // Completed item
-      { index: 5, task: 'Task 5', completed: false },
+      { index: 1, description: 'Task 1', completed: false },
+      { index: 2, description: 'Task 2', completed: true }, // Completed item
+      { index: 3, description: 'Task 3', completed: false },
+      { index: 4, description: 'Task 4', completed: true }, // Completed item
+      { index: 5, description: 'Task 5', completed: false },
     ];
 
     // Act
@@ -135,44 +165,9 @@ describe('removeItems', () => {
 
     // Assert
     expect(toDoListCollection).toEqual([
-      { index: 1, task: 'Task 1', completed: false },
-      { index: 2, task: 'Task 3', completed: false },
-      { index: 3, task: 'Task 5', completed: false },
+      { index: 1, description: 'Task 1', completed: false },
+      { index: 2, description: 'Task 3', completed: false },
+      { index: 3, description: 'Task 5', completed: false },
     ]); // The completed items should be removed
-  });
-});
-
-// Mock the storage functions
-jest.mock('../modules/storage', () => ({
-  getFromStorage: jest.fn(),
-  saveToStorage: jest.fn(),
-}));
-
-describe('EDIT_TODO_ITEM', () => {
-  beforeEach(() => {
-    // Clear the mock calls and implementations before each test
-    getFromStorage.mockClear();
-    saveToStorage.mockClear();
-  });
-
-  it('should update the description of a todo item and save it to storage', () => {
-    // Arrange
-    const todoID = 0;
-    const newDescription = 'New description';
-    const mockTodoList = [
-      { id: 0, description: 'Old description' },
-      { id: 1, description: 'Another item' },
-    ];
-    getFromStorage.mockReturnValue(mockTodoList);
-
-    // Act
-    EDIT_TODO_ITEM(todoID, newDescription);
-
-    // Assert
-    expect(getFromStorage).toHaveBeenCalled(); // Ensure getFromStorage was called
-    expect(saveToStorage).toHaveBeenCalledWith(mockTodoList);
-
-    // Check if the todo item's description was updated correctly
-    expect(mockTodoList[todoID].description).toBe(newDescription);
   });
 });
